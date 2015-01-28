@@ -1,4 +1,4 @@
-var dirFilterer = require('./05_module.js');
+var dirFilterer = require('./06_module.js');
 
 function printer(err, fileNames) {
   for(var i = 0; i < fileNames.length; i ++) {
