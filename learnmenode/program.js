@@ -1,5 +1,5 @@
 
-/////// Challenge 2:
+///// Challenge 2:
 
 // function isNumber(element) {
 //   return Number(element);
@@ -29,7 +29,7 @@ var fs = require('fs');
 var path =  require('path');
 
 function grepFiles(error, data) {
-  var filteredList = list.filter( function(arg) { 
+  var filteredList = list.filter( function(arg) { // This callback checks whether the file's ext name matches the given ext name.
     return path.extname(arg) === ("." + process.argv[3]);
   });
   
