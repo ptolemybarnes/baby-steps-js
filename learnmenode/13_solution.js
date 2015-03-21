@@ -1,20 +1,20 @@
-var http = require('http');
-var port = process.argv[2];
+var http = require('http')
 var url  = require('url');
 
-function HTTPJSONApiServer(port) {
-  http.createServer(function(req, res) {
-    var request = url.parse(req.url, true);
-    var hours   = request.query.iso;
-          console.log(hours);
-    
-    if(request.url.pathname === '/api/parsetime') {
-    }
+var requestListener = function(req, res) {
+  res.writeHead(200);
+  var parsedUrl = url.parse(req.url);
+  console.log(parsedUrl);
+  var timeArray = parsedUrl.query.match(/T(.*)[.]/)[1].split(":");
+  var time = {
+    "hour"  : parseInt(timeArray[0]),
+    "minute": parseInt(timeArray[1]),
+    "second": parseInt(timeArray[2])
+  }
+  res.end(JSON.stringify(time));
+}
 
+var server = http.createServer(requestListener);
 
-    console.log(request.query.iso);
+server.listen(process.argv[2]);
 
-  }).listen(port)
-};
-
-HTTPJSONApiServer(port);
